@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo List</title>
+    <title>To-Do List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>ToDo List</h1>
+    <h1>To-Do List</h1>
     <form id="taskForm">
         <input type="text" id="task" placeholder="New task">
         <button type="submit">Add Task</button>
     </form>
+    <div>
+        <button id="filterAll">All</button>
+        <button id="filterPending">Pending</button>
+        <button id="filterCompleted">Completed</button>
+    </div>
     <ul id="taskList"></ul>
 
     <script src="script.js"></script>
