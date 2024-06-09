@@ -5,12 +5,12 @@ async function fetchTasks(filter = 'all') {
     const tasks = await response.json();
     const taskList = document.getElementById('taskList');
     taskList.innerHTML = '';
-    tasks.forEach(task => {
+    tasks.forEach((task, index) => {
         if (filter === 'all' || (filter === 'pending' && task.status === 'pending') || (filter === 'completed' && task.status === 'completed')) {
             const listItem = document.createElement('li');
             listItem.className = task.status === 'completed' ? 'completed' : '';
             listItem.innerHTML = `
-                <span class="task-text">${task.task}</span>
+                <span class="task-text">${index + 1}. ${task.task}</span>
                 <div class="task-buttons">
                     <button onclick="toggleTaskStatus('${task.id}', '${task.status}')">${task.status === 'pending' ? 'Complete' : 'Undo'}</button>
                     <button onclick="editTask('${task.id}', '${task.task}')">Edit</button>
