@@ -1,5 +1,6 @@
 const apiUrl = 'https://<891377097782>.execute-api.us-east-1.amazonaws.com/prod/tasks';
 
+// Fetch tasks from the API
 async function fetchTasks(filter = 'all') {
     const response = await fetch(apiUrl);
     const tasks = await response.json();
@@ -22,6 +23,7 @@ async function fetchTasks(filter = 'all') {
     });
 }
 
+// Add a new task using the API
 async function addTask(task) {
     await fetch(apiUrl, {
         method: 'POST',
@@ -33,6 +35,7 @@ async function addTask(task) {
     fetchTasks();
 }
 
+// Toggle task status between pending and completed using the API
 async function toggleTaskStatus(taskId, currentStatus) {
     const newStatus = currentStatus === 'pending' ? 'completed' : 'pending';
     await fetch(apiUrl, {
@@ -45,6 +48,7 @@ async function toggleTaskStatus(taskId, currentStatus) {
     fetchTasks();
 }
 
+// Edit an existing task using the API
 async function editTask(taskId, currentTask) {
     const newTask = prompt("Edit the task:", currentTask);
     if (newTask !== null) {
@@ -59,6 +63,7 @@ async function editTask(taskId, currentTask) {
     }
 }
 
+// Delete a task using the API
 async function deleteTask(taskId) {
     await fetch(apiUrl, {
         method: 'DELETE',
@@ -70,6 +75,7 @@ async function deleteTask(taskId) {
     fetchTasks();
 }
 
+// Event listener for adding a new task
 document.getElementById('taskForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const taskInput = document.getElementById('task');
@@ -78,8 +84,10 @@ document.getElementById('taskForm').addEventListener('submit', async (e) => {
     taskInput.value = '';
 });
 
+// Event listeners for filtering tasks
 document.getElementById('filterAll').addEventListener('click', () => fetchTasks('all'));
 document.getElementById('filterPending').addEventListener('click', () => fetchTasks('pending'));
 document.getElementById('filterCompleted').addEventListener('click', () => fetchTasks('completed'));
 
+// Initial fetch of tasks
 fetchTasks();
