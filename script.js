@@ -1,4 +1,4 @@
-const apiUrl = 'https://<your-api-id>.execute-api.us-east-1.amazonaws.com/prod/tasks';
+const apiUrl = 'https://<891377097782>.execute-api.us-east-1.amazonaws.com/prod/tasks';
 
 async function fetchTasks() {
     const response = await fetch(apiUrl);
@@ -18,6 +18,9 @@ document.getElementById('taskForm').addEventListener('submit', async (e) => {
     const newTask = { id: Date.now().toString(), task: taskInput.value, status: 'pending' };
     await fetch(apiUrl, {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(newTask)
     });
     taskInput.value = '';
